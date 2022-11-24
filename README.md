@@ -1,7 +1,7 @@
 # How to Bypass 
 open a new tab and run the script in the console, select check point one, wait about 15 seconds (there is a 20 second count down in the console), then goto checkpoint 2 and so on
 ```js
-    alert(`Kernl key bypass by Sean V`)
+       alert(`Kernl key bypass by Sean V`)
     const opt = parseInt(prompt(`Select the checkpoints and wait 15 seconds [1-4]`))
 
     const bypass = c => {
@@ -14,10 +14,13 @@ open a new tab and run the script in the console, select check point one, wait a
         let t = 20
         console.log('Now Wait, then go to the next checkpoint (In ORDER)')
         const timer = setInterval(()=>{
+            
             console.log(t)
             t -= 1
-            
             if(t == 0){
+                if(c == 4){
+                    window.open('https://cdn.krnl.place/getkey_scripts')
+                }
                 clearInterval(timer)
                 console.log(`you may now continue to the next checkpoint`)
             }
@@ -40,7 +43,7 @@ open a new tab and run the script in the console, select check point one, wait a
         case 4:
             bypass('https://cdn.krnl.place/getkey.php')
         break
-
+        
         default:
             bypass(false)
     }
