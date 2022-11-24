@@ -44,4 +44,4 @@ open a new tab and run the script in the console, select check point one, wait a
         default:
             bypass(false)
     }
-    ```
+```
