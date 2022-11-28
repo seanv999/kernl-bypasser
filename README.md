@@ -1,50 +1,65 @@
 # How to Bypass 
 open a new tab and run the script in the console, select check point one, wait about 15 seconds (there is a 20 second count down in the console), then goto checkpoint 2 and so on
 ```js
-       alert(`Kernl key bypass by Sean V`)
-    const opt = parseInt(prompt(`Select the checkpoints and wait 15 seconds [1-4]`))
-
-    const bypass = c => {
-        if(!c){
-            alert(`Retry, You didn't select a valid checkpoint`)
-            return
-        }
-        window.open(c)
-        //start 15 seconds timer
-        let t = 20
-        console.log('Now Wait, then go to the next checkpoint (In ORDER)')
-        const timer = setInterval(()=>{
-            
-            console.log(t)
-            t -= 1
-            if(t == 0){
-                if(c == 4){
-                    window.open('https://cdn.krnl.place/getkey_scripts')
-                }
-                clearInterval(timer)
-                console.log(`you may now continue to the next checkpoint`)
-            }
-        },1000)
+alert(`Krnl Key Bypasser\nall you have to do is complete the checkpoint, then return to this page`)
+let t = false;
+let b = false;
+document.addEventListener("visibilitychange", event => {
+    if (document.visibilityState == "visible") {
+        b = true
+    } else {
+        t = true
     }
+});
 
-    switch(opt) {
+let currentCheckpoint = 1;
+
+const bypass = checkpoint => {
+    switch(checkpoint) {
         case 1:
-            bypass('https://cdn.krnl.place/getkey')
+            window.open('https://cdn.krnl.place/getkey')
         break;
 
         case 2:
-            bypass('https://cdn.krnl.place/getkey_games')
+            window.open('https://cdn.krnl.place/getkey_games')
         break;
         
         case 3:
-            bypass('https://cdn.krnl.place/getkey_interface')
+            window.open('https://cdn.krnl.place/getkey_interface')
         break
 
         case 4:
-            bypass('https://cdn.krnl.place/getkey.php')
+            window.open('https://cdn.krnl.place/getkey.php')
+        break
+
+        case 5:
+            window.open('https://cdn.krnl.place/getkey_scripts')
         break
         
         default:
-            bypass(false)
+            window.open('https://cdn.krnl.place/getkey_scripts')
     }
+    //detect
+    setInterval(() => {
+        if(t && b){
+            console.log('The next checkpoint will open after this countdown...')
+            t = false
+            b = false
+            let time = 20//to be safe
+            const timer = setInterval(()=>{
+                
+                console.log(`opening in: ${time}`)
+                if(time <= 0 ){
+                    clearInterval(timer)
+                    currentCheckpoint += 1
+                    bypass(currentCheckpoint)
+                    console.clear()
+                }
+                time -= 1
+            },1000)
+        }
+    }, 500);
+    
+}
+bypass(1)
 ```
